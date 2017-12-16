@@ -46,7 +46,12 @@ router.get('/', function (req, res) {
 
 router.route('/usuarios')
     .get(CtrlUsuario.consultaUsuarios)
-    .post(CtrlUsuario.agregarUsuario);
+    .post(CtrlUsuario.agregarUsuario)
+
+router.route('/usuarios/:id')
+    .get(CtrlUsuario.consultaUsuarioPorId)
+    .put(CtrlUsuario.actualizarUsuarioPorId)
+    .delete(CtrlUsuario.eliminarUsuarioPorId)
 
 app.use(router);
 

@@ -2,7 +2,10 @@ var mongoose = require('mongoose');
 
 var esquemaUsuario = new mongoose.Schema({
     nombre: { type: String },
-    apellido: { type: String }
+    apellido: { type: String },
+    correo: { type: String },
+    clave: { type: String },
+    rol: { type: String }
 });
 
 
