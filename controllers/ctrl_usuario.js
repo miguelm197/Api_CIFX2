@@ -72,4 +72,3 @@ exports.eliminarUsuarioPorId = function (req, res) {
         })
     });
 };
-

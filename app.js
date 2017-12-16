@@ -34,7 +34,9 @@ app.use(perimitirCrossDomain);
 require('./models/mdl_usuario');
 var CtrlUsuario = require('./controllers/ctrl_usuario');
 
-
+//colectas
+require('./models/mdl_colecta');
+var CtrlColecta = require('./controllers/ctrl_colecta');
 
 
 // Ruteo
@@ -52,6 +54,16 @@ router.route('/usuarios/:id')
     .get(CtrlUsuario.consultaUsuarioPorId)
     .put(CtrlUsuario.actualizarUsuarioPorId)
     .delete(CtrlUsuario.eliminarUsuarioPorId)
+
+
+router.route('/colectas')
+    .get(CtrlColecta.consultaColectas)
+    .post(CtrlColecta.agregarColecta)
+
+router.route('/colectas/:id')
+    .get(CtrlColecta.consultaColectaPorId)
+    .put(CtrlColecta.actualizarColectaPorId)
+    .delete(CtrlColecta.eliminarColectaPorId)
 
 app.use(router);
 
