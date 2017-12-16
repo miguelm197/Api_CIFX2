@@ -1,14 +1,9 @@
-exports = module.exports = function (app, mongoose) {
+var mongoose = require('mongoose');
 
-    var esquemaUsuario = new mongoose.Schema({
-        nombre:   { type: String },
-        apellido: { type: String }
-    });
+var esquemaUsuario = new mongoose.Schema({
+    nombre: { type: String },
+    apellido: { type: String }
+});
 
-    mongoose.model('mdl_usuario', esquemaUsuario, 'usuario');
-    //                 /              |            \
-    //                /               |             \
-    //      Nombre de referencia      |              |
-    //                      esquema exportado        |
-    //                                       documento de la bd
-};
+
+module.exports.Usuario = mongoose.model('mdl_usuario', esquemaUsuario, 'usuarios');

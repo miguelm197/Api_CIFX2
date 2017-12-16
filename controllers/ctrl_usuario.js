@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
 var SCH_Usuario = require('../models/mdl_usuario').Usuario;
-
 // //GET - Retorna todas las Tareas de la Base de Datos
 // exports.consultaTareas = function (req, res) {
 //     res.status(200).jsonp("sapeeee");
@@ -22,7 +21,6 @@ exports.agregarUsuario = function (req, res) {
         nombre: req.body.nombre,
         apellido: req.body.apellido
     });
-
     usuario.save(function (err, tarea) {
         if (err) return res.send(500, err.message);
         res.status(200).jsonp(usuario);
