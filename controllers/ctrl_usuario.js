@@ -1,15 +1,16 @@
 var mongoose = require('mongoose');
 
 var SCH_Usuario = require('../models/mdl_usuario').Usuario;
-// //GET - Retorna todas las Tareas de la Base de Datos
-// exports.consultaTareas = function (req, res) {
-//     res.status(200).jsonp("sapeeee");
-//     SCH_Tarea.find(function (err, tareas) {
-//         if (err) res.send(500, err.message);
-//         console.log('GET /tareas');
-//         res.status(200).jsonp(tareas);
-//     });
-// };
+
+
+//GET - Retorna todas las Tareas de la Base de Datos
+exports.consultaUsuarios = function (req, res) {
+    SCH_Usuario.find(function (err, usuarios) {
+        if (err) res.send(500, err.message);
+        console.log('GET /usuarios');
+        res.status(200).jsonp(usuarios);
+    });
+};
 
 
 //POST - Agrega una nueva tarea en la Base de Datos

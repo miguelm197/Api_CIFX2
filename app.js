@@ -45,7 +45,7 @@ router.get('/', function (req, res) {
 });
 
 router.route('/usuarios')
-    // .get(CtrlUsuario.consultaTareas)
+    .get(CtrlUsuario.consultaUsuarios)
     .post(CtrlUsuario.agregarUsuario);
 
 app.use(router);
