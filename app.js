@@ -3,10 +3,13 @@ var app = express();
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
+// var authCtrl = require('./auth');
+// var middleware = require('./middleware');
 
 
-// Conexión a la Base de Datos
-mongoose.connect('mongodb://admin:admin@ds147274.mlab.com:47274/bdtareas?authSource=bdtareas', function (err, res) {
+var connectionString = "mongodb://root:toor@ds125113.mlab.com:25113/cifx2";
+mongoose.connect(connectionString, function (err, res) {
     if (err) throw err;
     console.log('Conectado a la Base de Datos');
 });
@@ -27,42 +30,30 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(perimitirCrossDomain);
 
+//usuario
+require('./models/mdl_usuario');
+var CtrlUsuario = require('./controllers/ctrl_usuario');
 
-// Imports de Modelo y Controlador
-var modelo = require('./models/mdl_tarea')(app, mongoose);
-var CtrlTarea = require('./controllers/tareas');
+
 
 
 // Ruteo
 var router = express.Router();
 
-
 router.get('/', function (req, res) {
     res.send("Que tal sabandijas!");
 });
 
-router.get('/hola', function (req, res) {
-    res.send("Hola desgraciao!");
-});
-
-router.route('/tareas')
-    .get(CtrlTarea.consultaTareas)
-    .post(CtrlTarea.agregarTarea);
-
-
-router.route('/tareas/:id')
-    // .get(CtrlTarea.findById)
-    // .put(CtrlTarea.updateTVShow)
-    .delete(CtrlTarea.eliminarTarea);
+router.route('/usuarios')
+    // .get(CtrlUsuario.consultaTareas)
+    .post(CtrlUsuario.agregarUsuario);
 
 app.use(router);
 
-
-
 // Start server
-var port = process.env.PORT || 3000  
+var port = process.env.PORT || 3000
 app.listen(port, function () {
-    console.log("Node server running on http://localhost:3000");
+    console.log("Node server running");
 });
 
 

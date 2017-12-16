@@ -1,14 +1,17 @@
 {
-  "name": "api-tareas",
+  "name": "api-cifx2",
   "version": "1.0.0",
   "dependencies": {
-    "mongoose": "^4.1.11",
-    "express": "^4.7.1",
-    "method-override": "^2.1.2",
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.5.1",
-    "mongodb": "^2.2.12"
+    "express": "^4.7.1",
+    "jwt-simple": "^0.5.1",
+    "method-override": "^2.1.2",
+    "moment": "^2.19.3",
+    "mongodb": "^2.2.12",
+    "mongoose": "^4.1.11"
   },
-  "description": "Servicio de Tareas",
+  "description": "Servicio de CIFX2",
   "main": "app.js",
   "devDependencies": {},
   "scripts": {
@@ -16,12 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/miguelm197/Api_TAREAS1.0.git"
+    "url": "https://github.com/miguelm197/Api_CIFX2"
   },
   "author": "Miguel",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/miguelm197/Api_TAREAS1.0/issues"
   },
-  "homepage": "https://github.com/miguelm197/Api_TAREAS1.0#readme"
+  "homepage": "https://github.com/miguelm197/Api_CIFX2"
 }
