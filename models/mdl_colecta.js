@@ -4,7 +4,12 @@ var esquemaColecta = new mongoose.Schema({
     nombre: { type: String },
     descripcion: { type: String },
     monObjetivo: { type: String },
-    usuarios: { type: Array },
+    usuarios: [
+        {
+            usuario: { type: String },
+            rol: { type: String }
+        }
+    ],
     montos: [
         {
             usuario: { type: String },

@@ -30,7 +30,12 @@ exports.agregarColecta = function (req, res) {
         nombre: req.body.nombre,
         descripcion: req.body.descripcion,
         monObjetivo: req.body.monObjetivo,
-        usuarios: req.body.yo
+        usuarios: [
+            {
+                "usuario": req.body.yo,
+                "rol": "admin"
+            }
+        ]
     });
     colecta.save(function (err, tarea) {
         if (err) return res.send(500, err.message);
