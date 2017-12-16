@@ -43,21 +43,19 @@ exports.agregarUsuario = function (req, res) {
 exports.actualizarUsuarioPorId = function (req, res) {
 
     var password = req.body.clave;
-    bcrypt.hash(password, 12).then(function (claveHasheada) {
 
-        SCH_Usuario.findById(req.params.id, function (err, usuario) {
-            usuario.nombre = req.body.nombre;
-            usuario.apellido = req.body.apellido;
-            usuario.correo = req.body.correo;
-            usuario.clave = req.body.clave;
-            usuario.rol = req.body.rol;
+    SCH_Usuario.findById(req.params.id, function (err, usuario) {
+        usuario.nombre = req.body.nombre;
+        usuario.apellido = req.body.apellido;
+        usuario.correo = req.body.correo;
+        usuario.clave = req.body.clave;
+        usuario.rol = req.body.rol;
 
-            usuario.save(function (err) {
-                if (err) return res.send(500, err.message);
-                console.log('PUT Se modificó un usuario');
-                console.log(req.body);
-                res.status(200).jsonp(usuario);
-            });
+        usuario.save(function (err) {
+            if (err) return res.send(500, err.message);
+            console.log('PUT Se modificó un usuario');
+            console.log(req.body);
+            res.status(200).jsonp(usuario);
         });
     });
 };
