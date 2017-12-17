@@ -169,7 +169,7 @@ exports.eliminarComentarioColectaPorId = function (req, res) {
 
 
 //POST - Asocia un usuario a una colecta por ID
-exports.agregarUsuarioAColectaPorId = function (req, res) {
+exports.agregarColaboradorColectaPorId = function (req, res) {
 
     var idColecta = req.body.idColecta;
     var idUsuario = req.body.idUsuario;
@@ -180,13 +180,41 @@ exports.agregarUsuarioAColectaPorId = function (req, res) {
             "rol": "colaborador",
             "monto": 0
         }
-        colecta.comentarios.push(objeto)
+        colecta.usuarios.push(objeto)
 
         colecta.save(function (err) {
             if (err) return res.send(500, err.message);
             console.log('Se agregó un usuario a la colecta');
             console.log(objeto);
             res.status(200).jsonp(objeto);
+        });
+    });
+};
+
+
+//DELETE - Eliminar un colaborador de colecta por id de la Base de Datos
+exports.eliminarColaboradorColectaPorId = function (req, res) {
+    var idColecta = req.body.idColecta;
+    var idUsuario = req.body.idUsuario;
+
+    SCH_Colecta.findById(idColecta, function (err, colecta) {
+        var cant = colecta.usuarios.length;
+        var index = 0;
+
+        for (var i = 0; i < cant; i++) {
+            if (colecta.usuarios[i].usuario == idUsuario) {
+                colecta.usuarios.splice(i, 1)
+                index = i;
+                break;
+            }
+        }
+
+        colecta.save(function (err) {
+            if (err) return res.send(500, err.message);
+            var mensaje = { status: "Ok" }
+            console.log('DELETE Se eliminó un colaborador de la colecta');
+            console.log(colecta.usuarios);
+            res.status(200).jsonp(mensaje);
         });
     });
 };

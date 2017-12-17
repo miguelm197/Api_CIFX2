@@ -69,10 +69,9 @@ router.route('/comentarios/')
     .put(CtrlColecta.actualizarComentarioColectaPorId)
     .delete(CtrlColecta.eliminarComentarioColectaPorId)
 
-router.route('/colectores/')
-    .post(CtrlColecta.agregarUsuarioAColectaPorId)
-    // .put(CtrlColecta.actualizarComentarioColectaPorId)
-    // .delete(CtrlColecta.eliminarComentarioColectaPorId)
+router.route('/colaboradores/')
+    .post(CtrlColecta.agregarColaboradorColectaPorId)
+    .delete(CtrlColecta.eliminarColaboradorColectaPorId)
 
 app.use(router);
 
