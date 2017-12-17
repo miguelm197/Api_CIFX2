@@ -84,7 +84,7 @@ exports.eliminarColectaPorId = function (req, res) {
 exports.agregarComentario = function (req, res) {
 
     var idColecta = req.body.idColecta;
-    var usuario = req.body.usuario;
+    var idUsuario = req.body.idUsuario;
     var comentario = req.body.comentario;
     var fecha = new Date();
 
@@ -92,7 +92,7 @@ exports.agregarComentario = function (req, res) {
         console.log(colecta)
         colecta.comentarios.push(
             {
-                "usuario": usuario,
+                "usuario": idUsuario,
                 "fecha": fecha,
                 "comentario": comentario
             }
