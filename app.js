@@ -55,7 +55,6 @@ router.route('/usuarios/:id')
     .put(CtrlUsuario.actualizarUsuarioPorId)
     .delete(CtrlUsuario.eliminarUsuarioPorId)
 
-
 router.route('/colectas')
     .get(CtrlColecta.consultaColectas)
     .post(CtrlColecta.agregarColecta)
@@ -64,6 +63,16 @@ router.route('/colectas/:id')
     .get(CtrlColecta.consultaColectaPorId)
     .put(CtrlColecta.actualizarColectaPorId)
     .delete(CtrlColecta.eliminarColectaPorId)
+
+router.route('/comentarios/')
+    .post(CtrlColecta.agregarComentario)
+    .put(CtrlColecta.actualizarComentarioColectaPorId)
+    .delete(CtrlColecta.eliminarComentarioColectaPorId)
+
+router.route('/colectores/')
+    .post(CtrlColecta.agregarUsuarioAColectaPorId)
+    // .put(CtrlColecta.actualizarComentarioColectaPorId)
+    // .delete(CtrlColecta.eliminarComentarioColectaPorId)
 
 app.use(router);
 

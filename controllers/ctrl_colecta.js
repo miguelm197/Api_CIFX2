@@ -52,7 +52,6 @@ exports.actualizarColectaPorId = function (req, res) {
         colecta.nombre = req.body.nombre;
         colecta.descripcion = req.body.descripcion;
         colecta.monObjetivo = req.body.monObjetivo;
-        colecta.usuarios = req.body.usuarios;
 
         colecta.save(function (err) {
             if (err) return res.send(500, err.message);
@@ -73,5 +72,121 @@ exports.eliminarColectaPorId = function (req, res) {
             console.log(colecta);
             res.status(200).jsonp(mensaje);
         })
+    });
+};
+
+
+
+
+
+
+//POST - Agrega un nuevo comentario en la colecta 
+exports.agregarComentario = function (req, res) {
+
+    var idColecta = req.body.idColecta;
+    var usuario = req.body.usuario;
+    var comentario = req.body.comentario;
+    var fecha = new Date();
+
+    SCH_Colecta.findById(idColecta, function (err, colecta) {
+        console.log(colecta)
+        colecta.comentarios.push(
+            {
+                "usuario": usuario,
+                "fecha": fecha,
+                "comentario": comentario
+            }
+        )
+
+        colecta.save(function (err) {
+            if (err) return res.send(500, err.message);
+            console.log('Se agregó un comentario');
+            console.log(req.body);
+            res.status(200).jsonp(colecta.comentarios);
+        });
+    });
+};
+
+//PUT - Actualizar un comentario de una colecta por id en la Base de Datos
+exports.actualizarComentarioColectaPorId = function (req, res) {
+
+    var idColecta = req.body.idColecta;
+    var idComentario = req.body.idComentario;
+    var comentario = req.body.comentario;
+    var fecha = new Date();
+
+
+    SCH_Colecta.findById(idColecta, function (err, colecta) {
+        var cant = colecta.comentarios.length;
+        var index = 0;
+        for (var i = 0; i < cant; i++) {
+            if (colecta.comentarios[i].id == idComentario) {
+                colecta.comentarios[i].comentario = comentario;
+                colecta.comentarios[i].fecha = fecha;
+                index = i;
+                break;
+            }
+        }
+
+        colecta.save(function (err) {
+            if (err) return res.send(500, err.message);
+            console.log('PUT Se modificó un comentario');
+            console.log(colecta.comentarios[index]);
+            res.status(200).jsonp(colecta.comentarios[index]);
+        });
+    });
+};
+
+
+//DELETE - Eliminar un comentario de colecta por id de la Base de Datos
+exports.eliminarComentarioColectaPorId = function (req, res) {
+    var idColecta = req.body.idColecta;
+    var idComentario = req.body.idComentario;
+
+    SCH_Colecta.findById(idColecta, function (err, colecta) {
+        var cant = colecta.comentarios.length;
+        var index = 0;
+
+        for (var i = 0; i < cant; i++) {
+            if (colecta.comentarios[i].id == idComentario) {
+                colecta.comentarios.splice(i, 1)
+                index = i;
+                break;
+            }
+        }
+
+        colecta.save(function (err) {
+            if (err) return res.send(500, err.message);
+            var mensaje = { status: "Ok" }
+            console.log('DELETE Se eliminó una colecta');
+            console.log(colecta.comentarios[index]);
+            res.status(200).jsonp(mensaje);
+        });
+    });
+};
+
+
+
+
+//POST - Asocia un usuario a una colecta por ID
+exports.agregarUsuarioAColectaPorId = function (req, res) {
+
+    var idColecta = req.body.idColecta;
+    var idUsuario = req.body.idUsuario;
+
+    SCH_Colecta.findById(idColecta, function (err, colecta) {
+        var objeto = {
+            "usuario": idUsuario,
+            "rol": "colaborador",
+            "monto": 0
+        }
+        colecta.comentarios.push(objeto)
+
+        colecta.save(function (err) {
+            if (err) return res.send(500, err.message);
+            console.log('Se agregó un usuario a la colecta');
+            console.log(objeto);
+            res.status(200).jsonp(objeto);
+        });
     });
 };
