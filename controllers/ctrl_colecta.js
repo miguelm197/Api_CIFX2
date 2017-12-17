@@ -33,7 +33,8 @@ exports.agregarColecta = function (req, res) {
         usuarios: [
             {
                 "usuario": req.body.yo,
-                "rol": "admin"
+                "rol": "admin",
+                "monto": 0
             }
         ]
     });
