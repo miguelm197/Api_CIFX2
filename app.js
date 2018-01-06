@@ -46,9 +46,9 @@ router.get('/', function (req, res) {
     res.send("Que tal sabandijas!");
 });
 
-// router.route('/usuarios')
-//     .get(CtrlUsuario.consultaUsuarios)
-//     .post(CtrlUsuario.agregarUsuario)
+router.route('/usuarios')
+    .get(CtrlUsuario.consultaUsuarios)
+    .post(CtrlUsuario.agregarUsuario)
 
 router.route('/usuarios/:id')
     .get(CtrlUsuario.consultaUsuarioPorId)
