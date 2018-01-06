@@ -35,8 +35,8 @@ require('./models/mdl_usuario');
 var CtrlUsuario = require('./controllers/ctrl_usuario');
 
 //colectas
-require('./models/mdl_colecta');
-var CtrlColecta = require('./controllers/ctrl_colecta');
+require('./models/mdl_tarea');
+var CtrlTarea = require('./controllers/ctrl_tarea');
 
 
 // Ruteo
@@ -46,32 +46,32 @@ router.get('/', function (req, res) {
     res.send("Que tal sabandijas!");
 });
 
-router.route('/usuarios')
-    .get(CtrlUsuario.consultaUsuarios)
-    .post(CtrlUsuario.agregarUsuario)
+// router.route('/usuarios')
+//     .get(CtrlUsuario.consultaUsuarios)
+//     .post(CtrlUsuario.agregarUsuario)
 
 router.route('/usuarios/:id')
     .get(CtrlUsuario.consultaUsuarioPorId)
     .put(CtrlUsuario.actualizarUsuarioPorId)
     .delete(CtrlUsuario.eliminarUsuarioPorId)
 
-router.route('/colectas')
-    .get(CtrlColecta.consultaColectas)
-    .post(CtrlColecta.agregarColecta)
+router.route('/tareas')
+    .get(CtrlTarea.consultaTareas)
+    .post(CtrlTarea.agregarTarea)
 
-router.route('/colectas/:id')
-    .get(CtrlColecta.consultaColectaPorId)
-    .put(CtrlColecta.actualizarColectaPorId)
-    .delete(CtrlColecta.eliminarColectaPorId)
+router.route('/tareas/:id')
+    .get(CtrlTarea.consultaTareaPorId)
+    .put(CtrlTarea.actualizarTareaPorId)
+    .delete(CtrlTarea.eliminarTareaPorId)
 
-router.route('/comentarios/')
-    .post(CtrlColecta.agregarComentario)
-    .put(CtrlColecta.actualizarComentarioColectaPorId)
-    .delete(CtrlColecta.eliminarComentarioColectaPorId)
+// router.route('/comentarios/')
+//     .post(CtrlColecta.agregarComentario)
+//     .put(CtrlColecta.actualizarComentarioColectaPorId)
+//     .delete(CtrlColecta.eliminarComentarioColectaPorId)
 
-router.route('/colaboradores/')
-    .post(CtrlColecta.agregarColaboradorColectaPorId)
-    .delete(CtrlColecta.eliminarColaboradorColectaPorId)
+// router.route('/colaboradores/')
+//     .post(CtrlColecta.agregarColaboradorColectaPorId)
+//     .delete(CtrlColecta.eliminarColaboradorColectaPorId)
 
 app.use(router);
 
