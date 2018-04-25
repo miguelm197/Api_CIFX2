@@ -6,6 +6,7 @@ var esquemaTarea = new mongoose.Schema({
     estado: { type: String },
     usuarioEncargado: { type: String },
     tipo: { type: String },
+    fechaCreado: { type: Date },
     comentarios: [
         {
             comentario: { type: String },
